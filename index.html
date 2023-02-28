@@ -11,7 +11,35 @@
                 const randomNum = Math.floor(Math.random()*3);
                 return choice = choices[randomNum];
             }
-            console.log(getComputerChoice());
+            function rockCompareWithComputer(selection){
+                switch(selection.toLowerCase()){
+                    case "rock":
+                        console.log(`You played Rock. Computer played ${selection}. You're tied!`);
+                        break;
+                    case "paper":
+                        console.log( `You played Rock. Computer played ${selection}.You lose :(. Try again!`);  
+                        break;
+                    case "scissors":
+                        console.log( `You played Rock. Computer played ${selection}.You win!`);
+                }
+            }
+            function playRounds(playerSelection, computerSelection) {
+                
+                switch(playerSelection.toLowerCase()){
+                    case "rock":
+                        return rockCompareWithComputer(computerSelection);
+                        break;
+                    case "paper":
+                        console.log("not done");
+                        break;
+                    case "scissors":
+                        console.log("not done");
+                }
+                
+            }
+            const playerSelection = "Rock";
+            const computerSelection = getComputerChoice();
+            console.log(playRounds(playerSelection,computerSelection));
         </script>
     </body>
 </html>
