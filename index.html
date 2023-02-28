@@ -11,18 +11,46 @@
                 const randomNum = Math.floor(Math.random()*3);
                 return choice = choices[randomNum];
             }
+
             function rockCompareWithComputer(selection){
                 switch(selection.toLowerCase()){
                     case "rock":
-                        console.log(`You played Rock. Computer played ${selection}. You're tied!`);
+                        console.log(`You played Rock. Computer played ${selection}. You're tied. Try again!`);
                         break;
                     case "paper":
                         console.log( `You played Rock. Computer played ${selection}.You lose :(. Try again!`);  
                         break;
                     case "scissors":
-                        console.log( `You played Rock. Computer played ${selection}.You win!`);
+                        console.log( `You played Rock. Computer played ${selection}.You win :)!`);
                 }
             }
+
+            function paperCompareWithComputer(selection){
+                switch(selection.toLowerCase()){
+                    case "rock":
+                        console.log(`You played Paper. Computer played ${selection}. You win :)!`);
+                        break;
+                    case "paper":
+                        console.log( `You played Paper. Computer played ${selection}.You're tied. Try again!`);  
+                        break;
+                    case "scissors":
+                        console.log( `You played Paper. Computer played ${selection}.You lose :(. Try again!`);
+                }
+            }
+
+            function scissorsCompareWithComputer(selection){
+                switch(selection.toLowerCase()){
+                    case "rock":
+                        console.log(`You played Scissors. Computer played ${selection}. You lose :(. Try again!`);
+                        break;
+                    case "paper":
+                        console.log( `You played Scissors. Computer played ${selection}.You win :)!`);  
+                        break;
+                    case "scissors":
+                        console.log( `You played Scissors. Computer played ${selection}.You're tied. Try again!`);
+                }
+            }
+
             function playRounds(playerSelection, computerSelection) {
                 
                 switch(playerSelection.toLowerCase()){
@@ -30,14 +58,14 @@
                         return rockCompareWithComputer(computerSelection);
                         break;
                     case "paper":
-                        console.log("not done");
+                        return paperCompareWithComputer(computerSelection);
                         break;
                     case "scissors":
-                        console.log("not done");
+                        return scissorsCompareWithComputer(computerSelection);
                 }
                 
             }
-            const playerSelection = "Rock";
+            const playerSelection = prompt("Rock, paper or scissors? Type in your selection:");
             const computerSelection = getComputerChoice();
             console.log(playRounds(playerSelection,computerSelection));
         </script>
