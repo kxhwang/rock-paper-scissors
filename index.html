@@ -6,53 +6,64 @@
     </head>
     <body>
         <script>
+            const rock = "Rock";
+            const paper = "Paper";
+            const scissors = "Scissors";
+            const win = "You win :) !";
+            const lose = "You lose :( ! Try again!";
+            const tie = "You're tied. Try again!";
+
             function getComputerChoice(){
-                const choices = ["Rock", "Paper", "Scissors"];
+                const choices = [rock, paper, scissors];
                 const randomNum = Math.floor(Math.random()*3);
                 return choice = choices[randomNum];
+            }
+           
+
+            function constructMessage(result){
+                return `You played ${result[0]}. Computer played ${result[1]}. ${result[2]}`;
             }
 
             function rockCompareWithComputer(selection){
                 switch(selection.toLowerCase()){
                     case "rock":
-                        console.log(`You played Rock. Computer played ${selection}. You're tied. Try again!`);
+                        return [rock, selection, tie];
                         break;
                     case "paper":
-                        console.log( `You played Rock. Computer played ${selection}.You lose :(. Try again!`);  
+                        return [rock, selection, lose];
                         break;
                     case "scissors":
-                        console.log( `You played Rock. Computer played ${selection}.You win :)!`);
+                        return [rock, selection, win];
                 }
             }
 
             function paperCompareWithComputer(selection){
                 switch(selection.toLowerCase()){
                     case "rock":
-                        console.log(`You played Paper. Computer played ${selection}. You win :)!`);
+                        return [paper, selection, win];
                         break;
                     case "paper":
-                        console.log( `You played Paper. Computer played ${selection}.You're tied. Try again!`);  
+                        return [paper, selection, tie];
                         break;
                     case "scissors":
-                        console.log( `You played Paper. Computer played ${selection}.You lose :(. Try again!`);
+                        return [paper, selection, lose];
                 }
             }
 
             function scissorsCompareWithComputer(selection){
                 switch(selection.toLowerCase()){
                     case "rock":
-                        console.log(`You played Scissors. Computer played ${selection}. You lose :(. Try again!`);
+                        return [scissors, selection, lose];
                         break;
                     case "paper":
-                        console.log( `You played Scissors. Computer played ${selection}.You win :)!`);  
+                        return [scissors, selection, win];  
                         break;
                     case "scissors":
-                        console.log( `You played Scissors. Computer played ${selection}.You're tied. Try again!`);
+                        return [scissors, selection, tie];
                 }
             }
 
             function playRounds(playerSelection, computerSelection) {
-                
                 switch(playerSelection.toLowerCase()){
                     case "rock":
                         return rockCompareWithComputer(computerSelection);
@@ -65,9 +76,38 @@
                 }
                 
             }
-            const playerSelection = prompt("Rock, paper or scissors? Type in your selection:");
-            const computerSelection = getComputerChoice();
-            console.log(playRounds(playerSelection,computerSelection));
+            
+            const setRounds = prompt("How many rounds would you like to play?");
+      
+            function game(rounds){
+                let playerScore = 0;
+                let computerScore = 0;
+
+                for(i=0; i<rounds; i++){
+                    const playerSelection = prompt("Rock, paper or scissors? Type in your selection:");
+                    const computerSelection = getComputerChoice();
+                    const result = playRounds(playerSelection, computerSelection);
+
+                    switch(result[2]){
+                        case win:
+                            playerScore++;
+                            break;
+                        case lose:
+                            computerScore++;
+
+                    console.log(constructMessage(result))
+
+                    }
+                }
+                if(playerScore > computerScore){
+                    return win;
+                }else if(playerScore < computerScore) {
+                    return lose;
+                }else {
+                    return tie;
+                }
+            }
+            console.log(game(setRounds));
         </script>
     </body>
 </html>
