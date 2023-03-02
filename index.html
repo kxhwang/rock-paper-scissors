@@ -6,9 +6,9 @@
     </head>
     <body>
         <script>
-            const rock = "Rock";
-            const paper = "Paper";
-            const scissors = "Scissors";
+            const rock = "rock";
+            const paper = "paper";
+            const scissors = "scissors";
             const win = "You win :) !";
             const lose = "You lose :( ! Try again!";
             const tie = "You're tied. Try again!";
@@ -73,6 +73,7 @@
                         break;
                     case "scissors":
                         return scissorsCompareWithComputer(computerSelection);
+                        break;
                 }
                 
             }
@@ -85,7 +86,11 @@
                 let computerScore = 0;
 
                 for(i=0; i<rounds; i++){
-                    const playerSelection = prompt("Rock, paper or scissors? Type in your selection:");
+                    let playerSelection = prompt("Rock, paper or scissors? Type in your selection:");
+                    
+                    while(![rock, paper, scissors].includes(playerSelection.toLowerCase())){
+                        playerSelection = prompt("Please type in a valid entry (Rock, Paper, or Scissors)");
+                    } 
                     const computerSelection = getComputerChoice();
                     const result = playRounds(playerSelection, computerSelection);
                     console.log(constructMessage(result));
@@ -100,9 +105,11 @@
 
                     }
                 }
+
                 function finalScoreMessage(result){
                     return `Your score: ${playerScore} \nComputer score: ${computerScore} \n${result}`;
                 }
+
                 if(playerScore > computerScore){
                     return finalScoreMessage(win);
                 }else if(playerScore < computerScore) {
@@ -111,6 +118,7 @@
                     return finalScoreMessage(tie);
                 }
             }
+
             console.log(game(setRounds));
         </script>
     </body>
