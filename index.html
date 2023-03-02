@@ -76,7 +76,7 @@
                 }
                 
             }
-            
+
             const setRounds = prompt("How many rounds would you like to play?");
       
             function game(rounds){
@@ -87,7 +87,7 @@
                     const playerSelection = prompt("Rock, paper or scissors? Type in your selection:");
                     const computerSelection = getComputerChoice();
                     const result = playRounds(playerSelection, computerSelection);
-
+                    console.log(constructMessage(result));
                     switch(result[2]){
                         case win:
                             playerScore++;
@@ -95,16 +95,19 @@
                         case lose:
                             computerScore++;
 
-                    console.log(constructMessage(result))
+                   
 
                     }
                 }
+                function finalScoreMessage(result){
+                    return `Your score: ${playerScore} \nComputer score: ${computerScore} \n${result}`;
+                }
                 if(playerScore > computerScore){
-                    return win;
+                    return finalScoreMessage(win);
                 }else if(playerScore < computerScore) {
-                    return lose;
+                    return finalScoreMessage(lose);
                 }else {
-                    return tie;
+                    return finalScoreMessage(tie);
                 }
             }
             console.log(game(setRounds));
